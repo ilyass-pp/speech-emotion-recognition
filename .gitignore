@@ -1,0 +1,51 @@
+# Ou en PowerShell :
+@"
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+venv/
+.env
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+logs/
+*.log
+
+# Large datasets
+data/raw/
+data/interim/
+data/external/
+
+# Audio files
+*.wav
+*.mp3
+*.ogg
+*.flac
+*.m4a
+
+# Large ML artifacts (if you don't use Git LFS)
+*.pth
+*.pt
+*.ckpt
+*.onnx
+*.tflite
+*.pb
+*.pkl
+*.joblib
+
+# TensorBoard
+runs/
+lightning_logs/
+
+# OS
+.DS_Store
+Thumbs.db
+"@ | Out-File -FilePath .gitignore -Encoding utf8
