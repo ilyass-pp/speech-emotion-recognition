@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emotion Recognition from Audio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dark-mode-toggle" onclick="toggleDarkMode()">🌙</div>
+
+    <div class="container">
+        <h1>Emotion Recognition from Audio</h1>
+        <form method="POST" enctype="multipart/form-data">
+            <div class="upload-box">
+                <label for="file-upload" class="custom-file-upload">
+                    Choose or Drag Audio File
+                </label>
+                <input id="file-upload" type="file" name="file" accept=".wav, .mp3, .ogg, .flac" hidden>
+            </div>
+            <audio id="audio-preview" controls></audio>
+            <button type="submit">Upload and Predict</button>
+        </form>
+    
+        <div class="loader" id="loader"></div>
+    
+        {% if prediction %}
+            <div class="result">
+                <h2>Predicted Emotion: 
+                    <span>
+                        {% if prediction == "angry" %} 😠
+                        {% elif prediction == "happy" %} 😊
+                        {% elif prediction == "sad" %} 😢
+                        {% elif prediction == "neutral" %} 😐
+                        {% elif prediction == "surprise" %} 😮
+                        {% elif prediction == "fear" %} 😨
+                        {% elif prediction == "disgust" %} 🤢
+                        {% endif %}
+                        {{ prediction }}
+                    </span>
+                </h2>
+            </div>
+        {% endif %}
+    </div>
+    
+    <!-- Move footer outside the container -->
+    <footer>
+        <p class="made-by">Made with ❤️ by ILYASS</p>
+    </footer>
+
+    <script>
+        // File Upload and Drag & Drop
+        const fileUpload = document.getElementById('file-upload');
+        const customUpload = document.querySelector('.custom-file-upload');
+        const audioPreview = document.getElementById('audio-preview');
+        const form = document.querySelector('form');
+        const loader = document.getElementById('loader');
+
+        customUpload.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            customUpload.classList.add('active');
+        });
+
+        customUpload.addEventListener('dragleave', () => {
+            customUpload.classList.remove('active');
+        });
+
+        customUpload.addEventListener('drop', (e) => {
+            e.preventDefault();
+            customUpload.classList.remove('active');
+            fileUpload.files = e.dataTransfer.files;
+            updateAudioPreview();
+        });
+
+        fileUpload.addEventListener('change', updateAudioPreview);
+
+        function updateAudioPreview() {
+            if (fileUpload.files.length > 0) {
+                const file = fileUpload.files[0];
+                const objectURL = URL.createObjectURL(file);
+                audioPreview.src = objectURL;
+                audioPreview.style.display = 'block';
+            }
+        }
+
+        // Show loader on form submission
+        form.addEventListener('submit', () => {
+            loader.style.display = 'block';
+        });
+
+        // Dark Mode Toggle
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+    </script>
+</body>
+</html>
