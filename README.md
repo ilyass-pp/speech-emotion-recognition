@@ -7,6 +7,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 > 🎓 Projet de Fin d'Études – BTS Développement en Intelligence Artificielle
+
 > 👨‍💻 Auteur : **Ilyass AIT CHEIKH**
 
 > 📅 Année académique : 2024–2025
