@@ -202,8 +202,3 @@ speech-emotion-recognition/
 **Ilyass AIT CHEIKH**
 AI Developer | Passionné de Deep Learning
 
----
-
-## 📄 Licence
-
-Ce projet est sous licence [MIT](https://opensource.org/licenses/MIT).
