@@ -1,4 +1,4 @@
-# 🎤 Speech Emotion Recognition using CNN-BiLSTM
+# 🎤 Reconnaissance des Émotions Vocales avec CNN-BiLSTM
 
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue)](https://www.python.org/)
 [![TensorFlow](https://img.shields.io/badge/TensorFlow-2.x-orange)](https://www.tensorflow.org/)
@@ -6,162 +6,158 @@
 [![Flask](https://img.shields.io/badge/Flask-Web%20App-lightgrey)](https://flask.palletsprojects.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-> 🎓 Final Year Project – BTS Artificial Intelligence Development  
-> 👨‍💻 Author: **Ilyass AIT CHEIKH**  
-> 📅 Academic Year: 2024–2025  
+> 🎓 Projet de Fin d'Études – BTS Développement en Intelligence Artificielle
+> 👨‍💻 Auteur : **Ilyass AIT CHEIKH**
+> 📅 Année académique : 2024–2025
 
 ---
 
-## 🚀 Project Overview
+## 🚀 Présentation du Projet
 
-This project presents a **Deep Learning system for Speech Emotion Recognition (SER)** using a hybrid **CNN-BiLSTM architecture**.
+Ce projet présente un **système de Deep Learning pour la Reconnaissance des Émotions Vocales (SER)** basé sur une architecture hybride **CNN-BiLSTM**.
 
-The system classifies speech signals into **7 emotions**:
+Le système classifie les signaux vocaux en **7 émotions** :
 
-- Angry  
-- Disgust  
-- Fear  
-- Happy  
-- Neutral  
-- Sad  
-- Surprise  
+- 😠 Colère
+- 🤢 Dégoût
+- 😨 Peur
+- 😊 Joie
+- 😐 Neutre
+- 😢 Tristesse
+- 😲 Surprise
 
-### 🎯 Final Performance
-- ✅ Accuracy: **91%**
-- ✅ Macro F1-score: **0.91**
-- ✅ Strong multi-dataset generalization
+### 🎯 Performance Finale
+- ✅ Précision : **91%**
+- ✅ Score F1 macro : **0.91**
+- ✅ Bonne généralisation sur plusieurs datasets
 
-A **Flask web application** is included for real-time emotion prediction.
-
----
-
-## 📊 Datasets
-
-The model was trained on four public datasets:
-
-- CREMA-D  
-- RAVDESS  
-- TESS  
-- SAVEE  
-
-⚠ Raw audio files are NOT included in this repository due to size limitations.
+Une **application web Flask** est incluse pour la prédiction d'émotions en temps réel.
 
 ---
 
-## 🔧 Processing Pipeline
+## 📊 Jeux de Données
 
-### 1️⃣ Audio Preprocessing
-- Fixed duration: 2.5 seconds  
-- Offset trimming  
-- Amplitude normalization  
+Le modèle a été entraîné sur quatre datasets publics :
 
-### 2️⃣ Data Augmentation
-- Gaussian noise  
-- Time stretching  
-- Pitch shifting  
-- Time shifting  
-- Volume scaling  
-- Speed perturbation  
+| Dataset | Description |
+|---------|-------------|
+| CREMA-D | 7 442 clips audio de 91 acteurs |
+| RAVDESS | Discours et chant avec 24 acteurs |
+| TESS | 2 800 stimuli audio de femmes âgées |
+| SAVEE | 480 utterances de 4 locuteurs masculins |
 
-### 3️⃣ Feature Extraction
-- 40 MFCC  
-- Mel Spectrogram  
-- ZCR  
-- RMS Energy  
-- Chroma STFT  
-- Spectral Contrast  
-- Tonnetz  
-
-### 4️⃣ Class Balancing
-- SMOTE  
-
-### 5️⃣ Feature Scaling
-- StandardScaler  
+> ⚠️ Les fichiers audio bruts ne sont **PAS inclus** dans ce dépôt en raison de leur taille.
 
 ---
 
-## 🧠 Model Architecture
+## 🔧 Pipeline de Traitement
 
+### 1️⃣ Prétraitement Audio
+- Durée fixe : 2,5 secondes
+- Suppression des silences
+- Normalisation de l'amplitude
+
+### 2️⃣ Augmentation des Données
+- Bruit gaussien
+- Étirement temporel
+- Décalage de hauteur tonale
+- Décalage temporel
+- Mise à l'échelle du volume
+- Perturbation de la vitesse
+
+### 3️⃣ Extraction de Caractéristiques
+- 40 MFCC
+- Spectrogramme Mel
+- ZCR (Zero Crossing Rate)
+- Énergie RMS
+- Chroma STFT
+- Contraste Spectral
+- Tonnetz
+
+### 4️⃣ Équilibrage des Classes
+- SMOTE
+
+### 5️⃣ Mise à l'Échelle
+- StandardScaler
+
+---
+
+## 🧠 Architecture du Modèle
 ```
-Input (195,1)
-→ Conv1D (128) + BN + Pool + Dropout
-→ Conv1D (256) + Pool + Dropout
-→ Conv1D (512) + Pool + Dropout
-→ Bidirectional LSTM (128)
+Entrée (195, 1)
+→ Conv1D (128) + BatchNorm + Pooling + Dropout
+→ Conv1D (256) + Pooling + Dropout
+→ Conv1D (512) + Pooling + Dropout
+→ LSTM Bidirectionnel (128)
 → LSTM (64)
 → Dense (128)
 → Softmax (7 classes)
 ```
 
-Optimizer: Adam (lr = 0.001)  
-Loss: sparse_categorical_crossentropy  
+- **Optimiseur :** Adam (lr = 0.001)
+- **Fonction de perte :** sparse_categorical_crossentropy
 
 ---
 
-## 📈 Results
+## 📈 Résultats
 
-Overall Accuracy: **91%**
+| Métrique | Score |
+|----------|-------|
+| Précision globale | **91%** |
+| Score F1 macro | **0.91** |
 
-The CNN-BiLSTM model significantly outperforms classical ML approaches such as SVM, Random Forest, and XGBoost.
+> Le modèle CNN-BiLSTM surpasse largement les approches classiques : SVM, Random Forest et XGBoost.
 
 ---
 
-## 🌐 Web Application
+## 🌐 Application Web
 
-Run locally:
-
+Lancer en local :
 ```bash
 python app.py
 ```
 
-Open in browser:
-
+Ouvrir dans le navigateur :
 ```
 http://127.0.0.1:5000
 ```
 
 ---
 
-## 📂 Reproducing the Project
+## 📂 Reproduire le Projet
 
-1️⃣ Place raw audio files inside:
-
+**1️⃣** Placer les fichiers audio bruts dans :
 ```
 data/raw/
 ```
 
-2️⃣ Run feature extraction notebook:
-
+**2️⃣** Exécuter le notebook d'extraction de caractéristiques :
 ```
-notebooks/02_feature_extraction.ipynb
+notebooks/extration_caracteristique.ipynb
 ```
 
-This generates:
-
+Génère :
 ```
 data/processed/features_gpu_final.csv
 ```
 
-3️⃣ Run training notebook:
-
+**3️⃣** Exécuter le notebook d'entraînement :
 ```
-notebooks/03_model_training.ipynb
+notebooks/model.ipynb
 ```
 
 ---
 
-## 🛠 Installation
-
+## 🛠️ Installation
 ```bash
-git clone https://github.com/your-username/speech-emotion-recognition.git
+git clone https://github.com/ton-username/speech-emotion-recognition.git
 cd speech-emotion-recognition
 pip install -r requirements.txt
 ```
 
 ---
 
-## 📁 Project Structure
-
+## 📁 Structure du Projet
 ```
 speech-emotion-recognition/
 │
@@ -170,7 +166,7 @@ speech-emotion-recognition/
 ├── .gitignore
 │
 ├── notebooks/
-|   ├── data.ipynb
+│   ├── data.ipynb
 │   ├── extration_caracteristique.ipynb
 │   └── model.ipynb
 │
@@ -201,7 +197,13 @@ speech-emotion-recognition/
 
 ---
 
-## 👤 Author
+## 👤 Auteur
 
-**Ilyass AIT CHEIKH**  
-AI Developer | Deep Learning Enthusiast  
+**Ilyass AIT CHEIKH**
+AI Developer | Passionné de Deep Learning
+
+---
+
+## 📄 Licence
+
+Ce projet est sous licence [MIT](https://opensource.org/licenses/MIT).
