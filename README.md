@@ -8,6 +8,7 @@
 
 > 🎓 Projet de Fin d'Études – BTS Développement en Intelligence Artificielle
 > 👨‍💻 Auteur : **Ilyass AIT CHEIKH**
+
 > 📅 Année académique : 2024–2025
 
 ---
