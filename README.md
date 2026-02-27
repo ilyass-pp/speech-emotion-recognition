@@ -4,7 +4,6 @@
 [![TensorFlow](https://img.shields.io/badge/TensorFlow-2.x-orange)](https://www.tensorflow.org/)
 [![Librosa](https://img.shields.io/badge/Librosa-Audio%20Processing-green)](https://librosa.org/)
 [![Flask](https://img.shields.io/badge/Flask-Web%20App-lightgrey)](https://flask.palletsprojects.com/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 > 🎓 Projet de Fin d'Études – BTS Développement en Intelligence Artificielle
 
